@@ -31,14 +31,14 @@ class LinkedList {
 
   append(value) {
     const newNode = new Node(value);
-    console.log("current head: ", this.head);
-    console.log("current tail: ", this.tail);
+    // console.log("current head: ", this.head);
+    // console.log("current tail: ", this.tail);
     this.tail.next = newNode;
-    console.log("updated head: ", this.head);
-    console.log("updated tail", this.tail);
+    // console.log("updated head: ", this.head);
+    // console.log("updated tail", this.tail);
     this.tail = newNode;
-    console.log("new head: ", this.head);
-    console.log("new tail", this.tail);
+    // console.log("new head: ", this.head);
+    // console.log("new tail", this.tail);
     this.length++;
     return this;
   }
@@ -49,6 +49,46 @@ class LinkedList {
     this.head = newNode;
     this.length++;
     return this;
+  }
+
+  printList() {
+    const array = [];
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return array;
+  }
+
+  insert(index, value) {
+    if (index >= this.length) {
+      return this.append(value);
+    }
+    if (index === 0) {
+      return this.prepend(value);
+    }
+    const newNode = new Node(value);
+    const leader = this.traverseToIndex(index - 1);
+    const holdingPointer = leader.next;
+    leader.next = newNode;
+    newNode.next = holdingPointer;
+    this.length++;
+    return this;
+  }
+
+  traverseToIndex(index) {
+    let counter = 0;
+    let currentNode = this.head;
+    while (counter !== index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
+    return currentNode;
+  }
+
+  remove(index) {
+    pass;
   }
 }
 
@@ -67,5 +107,9 @@ myLinkedList.append(10);
 // console.log(myLinkedList);
 // console.log("next: ", myLinkedList.head.next);
 myLinkedList.prepend(7);
+console.log(myLinkedList.printList());
+myLinkedList.insert(2, 99);
+myLinkedList.insert(99, 90);
+console.log(myLinkedList.printList());
 // console.log("first prepend:");
 // console.log(myLinkedList);
