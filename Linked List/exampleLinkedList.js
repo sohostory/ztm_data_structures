@@ -88,7 +88,11 @@ class LinkedList {
   }
 
   remove(index) {
-    pass;
+    const leader = this.traverseToIndex(index - 1);
+    const unwantedNode = leader.next;
+    leader.next = unwantedNode.next;
+    this.length--;
+    return this;
   }
 }
 
@@ -107,9 +111,10 @@ myLinkedList.append(10);
 // console.log(myLinkedList);
 // console.log("next: ", myLinkedList.head.next);
 myLinkedList.prepend(7);
-console.log(myLinkedList.printList());
 myLinkedList.insert(2, 99);
 myLinkedList.insert(99, 90);
 console.log(myLinkedList.printList());
 // console.log("first prepend:");
 // console.log(myLinkedList);
+myLinkedList.remove(3);
+console.log(myLinkedList.printList());
