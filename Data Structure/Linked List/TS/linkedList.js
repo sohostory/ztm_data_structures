@@ -25,8 +25,6 @@ var LinkedList = /** @class */ (function () {
         this.length = 1;
     }
     LinkedList.prototype.append = function (value) {
-        if (!this.tail)
-            return;
         var newNode = new NewNode(value);
         this.tail.next = newNode;
         this.tail = newNode;
@@ -81,16 +79,37 @@ var LinkedList = /** @class */ (function () {
         var holdingPointer = leader.next;
         leader.next = holdingPointer.next;
         this.length--;
-        return this.printList;
+        return this.printList();
+    };
+    LinkedList.prototype.reverse = function () {
+        if (!this.head.next) {
+            return this.head;
+        }
+        var first = this.head;
+        var second = first.next;
+        while (second) {
+            var temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+        this.head.next = null;
+        this.head = first;
+        return this.printList();
     };
     return LinkedList;
 }());
-var myLinkedList = new LinkedList(10);
+var myLinkedList = new LinkedList(1);
+// myLinkedList.append(5);
+// myLinkedList.append(16);
+// myLinkedList.prepend(1);
+// myLinkedList.insert(2, 99);
+// myLinkedList.insert(4, 88);
+// myLinkedList.insert(20, 88);
+// myLinkedList.remove(1);
+myLinkedList.append(2);
+myLinkedList.append(3);
+myLinkedList.append(4);
 myLinkedList.append(5);
-myLinkedList.append(16);
-myLinkedList.prepend(1);
-myLinkedList.insert(2, 99);
-myLinkedList.insert(4, 88);
-myLinkedList.insert(20, 88);
-myLinkedList.remove(1);
+myLinkedList.reverse();
 console.log(myLinkedList.printList());
