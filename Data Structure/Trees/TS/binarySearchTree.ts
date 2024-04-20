@@ -23,9 +23,9 @@ class BinarySearchTree {
     }
 
     let currentPointer: NewNode | null = this.root;
-    while (currentPointer !== null) {
+    while (currentPointer) {
       if (currentPointer.value > value) {
-        if (currentPointer.left === null) {
+        if (!currentPointer.left) {
           currentPointer.left = newNode;
           console.log("left node added: ", this);
           return this;
@@ -33,7 +33,7 @@ class BinarySearchTree {
           currentPointer = currentPointer.left;
         }
       } else {
-        if (currentPointer.right === null) {
+        if (!currentPointer.right) {
           currentPointer.right = newNode;
           console.log("right node added: ", this);
           return this;
@@ -48,8 +48,8 @@ class BinarySearchTree {
     if (!this.root) {
       return null;
     }
-    let currentNode = this.root;
-    while (currentNode !== null) {
+    let currentNode: NewNode | null = this.root;
+    while (currentNode) {
       if (currentNode.value === value) {
         console.log("node found: ", currentNode);
         return currentNode;

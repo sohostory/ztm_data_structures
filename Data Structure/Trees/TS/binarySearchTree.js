@@ -75,7 +75,7 @@ tree.insert(15);
 tree.insert(1);
 tree.remove(170);
 console.log(JSON.stringify(traverse(tree.root)));
-console.log(tree.lookup(21));
+console.log(tree.lookup(20));
 //     9
 //  4     20
 //1  6  15  170
