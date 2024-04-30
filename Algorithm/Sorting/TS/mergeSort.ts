@@ -1,15 +1,15 @@
-const numbersarray = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+const numbersArray = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
 
-function mergesort(array) {
+function mergeSort(array) {
   if (array.length === 1) {
     return array;
   }
   // split array in into right and left
-  const middle = math.floor(array.length / 2);
+  const middle = Math.floor(array.length / 2);
   const left = array.slice(0, middle);
   const right = array.slice(middle);
 
-  return merge(mergesort(left), mergesort(right));
+  return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right) {
@@ -18,7 +18,7 @@ function merge(left, right) {
   let sorted: number[] = [];
 
   while (i < left.length && j < right.length) {
-    if (left[i] <= right[j]) {
+    if (left[i] < right[j]) {
       sorted.push(left[i]);
       i++;
     } else {
@@ -27,13 +27,7 @@ function merge(left, right) {
     }
   }
 
-  if (i < left.length) {
-    sorted.concat(left.slice(i));
-  } else if (j < right.length) {
-    sorted.concat(right.slice(j));
-  }
-
-  return sorted;
+  return sorted.concat(left.slice(i).concat(right.slice(j)));
 }
 
 const answer = mergeSort(numbersArray);
